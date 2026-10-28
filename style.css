@@ -1,0 +1,135 @@
+:root {
+  --bg: #eceff0;
+  --fg: #141d1c;
+  --muted: #66767a;
+  --line: #141d1c;
+  --line-soft: #b4bfc1;
+  --accent: #1c7a6c;
+  --fonte: "DM Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--fonte);
+  display: grid;
+  place-items: center;
+  padding: 24px 16px;
+}
+
+.moldura {
+  position: relative;
+  width: min(100%, 44rem);
+  padding: clamp(1.75rem, 6vw, 3.5rem)
+           clamp(1.25rem, 5vw, 3rem);
+  border: 1px solid var(--line);
+  display: grid;
+  gap: 2rem;
+  text-align: center;
+}
+
+.moldura::before {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  border: 1px solid var(--line-soft);
+  pointer-events: none;
+}
+
+.fuso {
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.hora {
+  font-weight: 300;
+  font-size: clamp(2.25rem, 11vw, 6.5rem);
+  line-height: 1;
+  letter-spacing: -0.055em;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.sep {
+  display: inline-block;
+  animation: piscar 1s step-end infinite;
+}
+
+@keyframes piscar {
+  50% {
+    opacity: 0.2;
+  }
+}
+
+.periodo {
+  font-size: 0.18em;
+  letter-spacing: 0;
+  margin-left: 0.5em;
+  color: var(--muted);
+  vertical-align: middle;
+}
+
+.periodo[hidden] {
+  display: none;
+}
+
+.regua {
+  width: 100%;
+  height: 2px;
+  background: var(--line-soft);
+  overflow: hidden;
+}
+
+.regua span {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.2s linear;
+}
+
+.data {
+  font-size: clamp(0.8rem, 2.6vw, 0.95rem);
+  letter-spacing: 0.04em;
+}
+
+.data::first-letter {
+  text-transform: uppercase;
+}
+
+.formato {
+  justify-self: center;
+  font: inherit;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: transparent;
+  border: 1px solid var(--line-soft);
+  padding: 0.55rem 1rem;
+  cursor: pointer;
+}
+
+.formato:hover {
+  color: var(--fg);
+  border-color: var(--line);
+}
+
+.formato:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
